@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flow State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13eccb",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#10221f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(19, 236, 203, 0.3), 0 0 40px rgba(19, 236, 203, 0.2), 0 0 60px rgba(19, 236, 203, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark dark group/design-root overflow-x-hidden font-display">
+<div class="flex flex-col grow justify-between items-center w-full max-w-md mx-auto p-4">
+<div class="flex-grow flex flex-col items-center justify-center w-full pt-16">
+<div class="relative w-full max-w-[300px] aspect-square flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl"></div>
+<div class="w-full h-full bg-center bg-no-repeat bg-contain glow-effect rounded-full" data-alt="A soft, glowing, ethereal creature representing a user's focus companion. It has a calm and friendly appearance, reminiscent of a spirit from a Ghibli film." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6dLs5ZCbgCSEIeSVMQoVtp154XMIx4VlMoAHP2VsMQtTUsW39tElJqQSY1YLN1UUjxlS-pojXun2XEz_jnwZDMvL9I8dPmIkgv1pwLHtrW_g9OtDwmpCWwGAc_xogtk10weT-c_uxkSOaPBdE5aDAKFCCVs7VmuVLj6JAvTwj_lit7kmb37Su_jmslio42t9blLWwgSBBwqWnJCOppSp4E4gmRvE3gYE8V4GR2eA00EUDcU5XtVVZ4Scgsp_bxGw_VCFGqg-_RCHJ");'></div>
+</div>
+</div>
+<div class="w-full flex flex-col items-center pb-4">
+<h1 class="text-white tracking-tight text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6 font-display">You’re in Flow!</h1>
+<p class="text-white/80 text-base font-normal leading-normal pb-3 pt-1 px-4 text-center max-w-xs font-display">Each calm session grows your companion — and your focus.</p>
+<div class="flex px-4 py-3 w-full mt-6">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 flex-1 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] font-display">
+<span class="truncate">Start My First 2-Minute Ritual</span>
+<span class="material-symbols-outlined ml-2">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

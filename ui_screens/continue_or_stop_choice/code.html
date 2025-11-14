@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Continue Session</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13eccb",
+              "background-light": "#f6f8f8",
+              "background-dark": "#10221f",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-[#121820] dark group/design-root overflow-hidden font-display">
+<div class="absolute inset-0 z-0 opacity-10">
+<svg height="100%" preserveaspectratio="xMidYMid slice" viewbox="0 0 800 1200" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialgradient cx="50%" cy="30%" fx="50%" fy="30%" id="grad1" r="70%">
+<stop offset="0%" style="stop-color:#00A99D;stop-opacity:0.3"></stop>
+<stop offset="100%" style="stop-color:#121820;stop-opacity:0"></stop>
+</radialgradient>
+<radialgradient cx="20%" cy="80%" fx="20%" fy="80%" id="grad2" r="60%">
+<stop offset="0%" style="stop-color:#54D6C1;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#121820;stop-opacity:0"></stop>
+</radialgradient>
+</defs>
+<rect fill="#121820" height="100%" width="100%" x="0" y="0"></rect>
+<rect fill="url(#grad1)" height="100%" width="100%" x="0" y="0"></rect>
+<rect fill="url(#grad2)" height="100%" width="100%" x="0" y="0"></rect>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col items-center justify-center flex-grow p-4">
+<div class="flex flex-col items-center justify-center flex-1 w-full text-center">
+<h1 class="text-[#F0F2F5] tracking-tight text-[32px] font-bold leading-tight px-4 text-center pb-8 pt-6">Would you like to continue?</h1>
+<div class="flex flex-1 gap-4 max-w-sm flex-col items-stretch w-full px-4 py-3">
+<button class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-gradient-to-r from-[#00A99D] to-[#54D6C1] text-[#121820] text-base font-bold leading-normal tracking-[0.015em] w-full shadow-lg shadow-[#00A99D]/20">
+<span class="material-symbols-outlined mr-2">spa</span>
+<span class="truncate">Focus Gently (15 mins)</span>
+</button>
+<button class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-gradient-to-r from-[#00A99D] to-[#54D6C1] text-[#121820] text-base font-bold leading-normal tracking-[0.015em] w-full shadow-lg shadow-[#00A99D]/20">
+<span class="material-symbols-outlined mr-2">dark_mode</span>
+<span class="truncate">Deep Work (45 mins)</span>
+</button>
+<button class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-transparent border-2 border-[#F0F2F5]/40 text-[#F0F2F5] text-base font-bold leading-normal tracking-[0.015em] w-full mt-4">
+<span class="material-symbols-outlined mr-2" style="color: #FFEBC1;">spark</span>
+<span class="truncate">End Session</span>
+</button>
+</div>
+<p class="text-[#F0F2F5]/70 text-base font-normal leading-normal pb-3 pt-8 px-4 text-center max-w-sm">Every choice counts — your calm grows with consistency.</p>
+</div>
+</div>
+</div>
+</body></html>

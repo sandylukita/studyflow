@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Warm Start Timer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .timer-glow {
+            box-shadow: 0 0 15px 5px rgba(19, 236, 203, 0.2), 0 0 30px 10px rgba(19, 236, 203, 0.15), 0 0 60px 20px rgba(19, 236, 203, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13eccb",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#10221f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col items-center justify-between p-6 dark group/design-root overflow-hidden">
+<!-- Header area for status bar spacing -->
+<div class="h-8 w-full flex-shrink-0"></div>
+<!-- Main Content -->
+<div class="flex flex-1 flex-col items-center justify-center gap-12 text-center">
+<!-- Timer Circle Component -->
+<div class="relative flex h-64 w-64 items-center justify-center rounded-full bg-gradient-to-br from-gray-800/20 to-gray-900/40 timer-glow">
+<div class="absolute h-[95%] w-[95%] rounded-full bg-background-dark"></div>
+<div class="relative z-10 flex items-center justify-center">
+<span class="text-7xl font-bold tracking-tighter text-white">2:00</span>
+</div>
+</div>
+<!-- HeadlineText Component -->
+<h2 class="max-w-xs text-2xl font-bold leading-snug tracking-tight text-slate-200">Just start for 2 minutes. You can stop anytime.</h2>
+</div>
+<!-- Footer with CTA -->
+<div class="w-full max-w-md pb-4">
+<!-- SingleButton Component -->
+<div class="flex px-0 py-3">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 flex-1 bg-primary text-background-dark gap-2 text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Begin Warm Start</span>
+<span class="material-symbols-outlined text-background-dark" data-icon="ArrowRight">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

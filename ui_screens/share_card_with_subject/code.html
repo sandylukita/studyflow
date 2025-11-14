@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Study Flow Moment</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        body {
+            /* This style is for preview purposes to simulate a background behind the transparent PNG card. The actual card is transparent. */
+            background-image: linear-gradient(to bottom right, #1a2a27, #2c3e50);
+        }
+        .vignette-container {
+            /* Creates a soft, feathered edge effect on the container. */
+            box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .glow-icon {
+            filter: drop-shadow(0 0 12px #13eccb);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13eccb",
+              "background-light": "#f6f8f8",
+              "background-dark": "#10221f",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center bg-transparent group/design-root vignette-container p-4">
+<!-- Shareable Card Container -->
+<div class="relative flex w-full max-w-sm flex-col overflow-hidden rounded-xl bg-background-dark/80 backdrop-blur-sm p-8 shadow-2xl">
+<!-- Bottom Left Feather Icon -->
+<div class="absolute bottom-6 left-6 text-primary glow-icon">
+<span class="material-symbols-outlined text-3xl">flight</span>
+</div>
+<!-- Header: Subject Chip -->
+<div class="flex">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary/20 pl-3 pr-4">
+<span class="material-symbols-outlined text-primary text-base">science</span>
+<p class="text-white text-sm font-medium leading-normal">Biology</p>
+</div>
+</div>
+<!-- Main Content: Stats and Reflection -->
+<div class="flex flex-col items-center justify-center text-center py-10">
+<h1 class="text-white tracking-light text-5xl font-bold leading-tight">22 min Calm</h1>
+<p class="text-white text-3xl font-normal leading-normal pt-4">🩵</p>
+<p class="text-primary/70 text-sm font-normal leading-normal pt-6">Nov 12, 2025</p>
+</div>
+<!-- Weekly Heatmap -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-5">
+<div class="h-2 w-2 rounded-full bg-primary/30"></div>
+<div class="h-2 w-2 rounded-full bg-primary/50"></div>
+<div class="h-2 w-2 rounded-full bg-primary/20"></div>
+<div class="h-2 w-2 rounded-full bg-primary/80"></div>
+<div class="h-2 w-2 rounded-full bg-primary/40"></div>
+<div class="h-2 w-2 rounded-full bg-primary/60"></div>
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+</div>
+<!-- Footer: Tagline -->
+<div class="flex justify-end pt-4">
+<p class="text-primary/70 text-sm font-normal leading-normal text-right">#StudyFlowMoment 🌿</p>
+</div>
+</div>
+</div>
+</body></html>

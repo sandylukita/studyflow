@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Onboarding Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#7de3d3",
+              "background-light": "#f6f8f8",
+              "background-dark": "#12201e",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex h-screen min-h-[600px] w-full flex-col bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<img class="h-full w-full object-cover opacity-20 dark:opacity-30" data-alt="Abstract image of soft, glowing white feather-like shapes floating against a dark, textured background, creating a serene and magical atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkLkNhnB6qXRSZdnaJxxrTPPgR2OJyjsk_zFOvtERo5j0B03II_R1KxwKbQbisQfEAtVusikRo2_ilho6cqztXEUfw3iTHevUhKBVLr5HxW8gKhtlGNPSX6BPadwzrIfbK5Ep78JXSF1L_38Gp9p7rNn5Y2qRTdtSfhuXeDC20e1LjU1PWMJ6KH3LxzDdk4tzLTBr1jOnYjL7F9W5na6PqcujGyCPbhIk9tu8CRa-MvOQgSQItil9e9ogVY0QWSzLmPwDN_qLIe6ga"/>
+</div>
+<div class="relative z-10 flex flex-1 flex-col justify-between p-6">
+<!-- Spacer to push content down -->
+<div class="flex-grow"></div>
+<!-- Content Block -->
+<div class="flex flex-col items-center justify-center text-center">
+<h1 class="font-bold tracking-tight text-slate-900 dark:text-white text-3xl leading-tight">Thousands are already studying calmly.</h1>
+<p class="mt-2 font-normal text-slate-700 dark:text-slate-300 text-base leading-normal max-w-sm">You’re joining a new kind of learner — one that grows without burnout.</p>
+</div>
+<!-- Spacer & Bottom Controls -->
+<div class="flex flex-grow flex-col justify-end">
+<div class="flex w-full flex-row items-center justify-center gap-3 pt-8 pb-4">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<div class="h-2 w-2 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+<div class="h-2 w-2 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+<div class="h-2 w-2 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+</div>
+<div class="w-full">
+<button class="flex w-full h-12 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-primary px-5 text-background-dark gap-2 text-base font-bold leading-normal tracking-wide">
+<span>Next</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

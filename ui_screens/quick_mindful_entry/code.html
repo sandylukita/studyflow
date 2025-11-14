@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calm Breath Exercise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13eccb",
+            "background-light": "#f6f8f8",
+            "background-dark": "#10221f",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    @keyframes breathe {
+      0% { transform: scale(0.8); opacity: 0.7; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0.7; }
+    }
+    .breathing-bubble {
+      animation: breathe 8s ease-in-out infinite;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-[100dvh] w-full flex-col overflow-x-hidden p-4">
+<!-- Content container -->
+<div class="flex flex-1 flex-col items-center justify-center text-center">
+<!-- Breathing Bubble Animation -->
+<div class="relative mb-12 flex h-64 w-64 items-center justify-center">
+<div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#4FD1C5] to-[#3B82F6] opacity-30 blur-2xl"></div>
+<div class="breathing-bubble h-48 w-48 rounded-full bg-gradient-to-br from-[#4FD1C5] to-[#3B82F6]"></div>
+</div>
+<!-- Headline Text -->
+<h1 class="text-white font-display tracking-light text-[32px] font-bold leading-tight px-4 pb-3">Before we start, take one calm breath.</h1>
+<!-- Body Text -->
+<p class="text-white/80 font-display text-base font-normal leading-normal pb-3 pt-1 px-4">Your brain learns best when it feels safe.</p>
+</div>
+<!-- Footer with CTAs -->
+<div class="w-full pb-4">
+<!-- Primary Button -->
+<div class="flex py-3">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-primary text-background-dark gap-2 text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Start for 2 Minutes</span>
+<span class="material-symbols-outlined text-background-dark">arrow_forward</span>
+</button>
+</div>
+<!-- Skip Button -->
+<div class="flex py-1 justify-center">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-transparent text-white/60 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Skip</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

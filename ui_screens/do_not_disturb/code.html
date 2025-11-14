@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Do Not Disturb Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13eccb",
+              "background-light": "#f6f8f8",
+              "background-dark": "#10221f",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<div class="flex w-full flex-1 flex-col items-center justify-between p-4">
+<div class="flex-grow flex items-center justify-center">
+<div class="relative w-full max-w-xs aspect-[2/3] mx-auto">
+<div class="w-full h-full bg-center bg-no-repeat bg-contain" data-alt="Illustration of a smartphone with notification icons floating away from it, symbolizing digital noise fading." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeN_ZkC4ZfV07QIDoU4GMoJBf56_FEifp8uHm4uMppIdUohqTEjxfbbzVQ1RGo00KIu4b6Z20MKlPqMrxTnrzSeNwncsaIpHADC_mkzACQfmGVHAOQx7lo7fOk0VWy-WO2OBUisn0zeTfzZ4RVgfs5qsWXg9cBq-oPXH-6MOy0nlJBOuJVwgk3V-bEfWrE2_u0s3Pj6apWWopcCKAJOn-QvEtZWMuIsxFIXQaMGhIgL8M8zZnTg055q5s3ekLEWneJzv8ABggUbDXn"); background-size: 80%; opacity: 0.2;'></div>
+</div>
+</div>
+<div class="w-full max-w-md text-center">
+<h1 class="text-white tracking-tight text-[32px] font-bold leading-tight px-4 pb-3">For deeper calm, switch to Do Not Disturb.</h1>
+<p class="text-white/70 font-display text-base leading-normal px-4 pb-8">Find your focus by turning off notifications during your study session.</p>
+<div class="flex flex-1 flex-col items-stretch gap-3 px-4 py-3">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] w-full">
+<span class="truncate">Activate DND</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-transparent text-white/70 text-base font-bold leading-normal tracking-[0.015em] w-full hover:text-white transition-colors">
+<span class="truncate">Skip</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

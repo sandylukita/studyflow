@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Study Habit Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13eccb",
+            "background-light": "#f6f8f8",
+            "background-dark": "#10221f",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col">
+<main class="flex-1 px-4 pt-8 pb-32">
+<div class="mx-auto flex max-w-md flex-col gap-6">
+<!-- Card 1: Shame -->
+<div class="bg-cover bg-center flex flex-col items-stretch justify-end rounded-xl min-h-[300px] sm:min-h-[400px]" data-alt="Faint illustration of soft clouds in a dark teal sky" style='background-image: linear-gradient(0deg, rgba(16, 34, 31, 0.8) 0%, rgba(16, 34, 31, 0.2) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuApt5K0E_ASOZNBY3AE1Gfg8bDrumAijD0pkgaCqSfUE9lrN-0wrgaylmAIKbec0V2-0b1GwsW0fibvd7nuaf7gi6unTp18h4C_3Po3cHmczELDxcKkEpsDr5hM_swUhK1iyypxUpVV627JpKcm1uiO5wO19DZFs4uNGdNxwO4IAGYbb50Uhleghr4Nnc55Tf36U5tJfWPfHpyQ691LwaynyF_z21V4MSR4g1dpFUTbsQENSP9Y8cupoQoNV9lQUcWyY5KQ6HWi0tL_");'>
+<div class="flex w-full flex-col gap-2 p-6">
+<p class="text-base font-medium leading-normal text-slate-400">Shame →</p>
+<p class="text-3xl font-bold leading-tight tracking-tight text-slate-100">You are enough.</p>
+</div>
+</div>
+<!-- Card 2: Comparison -->
+<div class="bg-cover bg-center flex flex-col items-stretch justify-end rounded-xl min-h-[300px] sm:min-h-[400px]" data-alt="Faint illustration of a gentle stream in a dark forest" style='background-image: linear-gradient(0deg, rgba(16, 34, 31, 0.8) 0%, rgba(16, 34, 31, 0.2) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfr0t-wps--Jm3xiuDcei_EyU4tOUHrW-V7qAvkRhPLFA8N3uFNB9k3U8mHoNb1hcHlW-o7RjExWpxWedrJaJvke6H0hPs7Nl7Y_e_FJjRAx6aS3-5PsqBUg_-w3Wbhu_RhUc-0W4q4Y7oUv2BstjiJ3OdNI5nnca2Zt2p6vIe2H6QCd4R9QxBR9Nc7zHSeG6i8h9i3v9dZV1cLXWLzUiWmIF9PsR6_h_jkwhCT1ExRnqBSeHv-1-seL9gf62VHzkkCrtgdu7UyOV7");'>
+<div class="flex w-full flex-col gap-2 p-6">
+<p class="text-base font-medium leading-normal text-slate-400">Comparison →</p>
+<p class="text-3xl font-bold leading-tight tracking-tight text-slate-100">Your path is unique.</p>
+</div>
+</div>
+<!-- Card 3: Overwhelm -->
+<div class="bg-cover bg-center flex flex-col items-stretch justify-end rounded-xl min-h-[300px] sm:min-h-[400px]" data-alt="Faint illustration of floating leaves on a dark background" style='background-image: linear-gradient(0deg, rgba(16, 34, 31, 0.8) 0%, rgba(16, 34, 31, 0.2) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDynRmLxBr7aasKw2Kg2n9yp57BLsU4HdezirybeXzvQpLbLx2ZcaOFOTJhTilztSnBGHMIQ691qA46MwQPgZZR9A94fuYAVMfKRGP03YmaDtAzEiny15F7_CDCPjbpSNiQKPJulxncp_h7XiKXkg8Zj5wNEBJy03IAaC5uhcXQJPmSv6KCLKwhabwDytahTBKcmTSTjy_Rr9r4OEQvoBfq2IuaQFIZm0663LuAWQlXB0oo8dy6fQsGLXmPMoOapvle5dUv_T92NTii");'>
+<div class="flex w-full flex-col gap-2 p-6">
+<p class="text-base font-medium leading-normal text-slate-400">Overwhelm →</p>
+<p class="text-3xl font-bold leading-tight tracking-tight text-slate-100">One step at a time.</p>
+</div>
+</div>
+<!-- Card 4: Procrastination -->
+<div class="bg-cover bg-center flex flex-col items-stretch justify-end rounded-xl min-h-[300px] sm:min-h-[400px]" data-alt="Faint illustration of a starry night sky" style='background-image: linear-gradient(0deg, rgba(16, 34, 31, 0.8) 0%, rgba(16, 34, 31, 0.2) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAPGcJWXVHmG8JJ5A4KJ8zZKtJpWPYzEtxkYMVy2mke144GMJtP65niFkFCz6_ROOi8O_h0vosWQRKgISvyBnMvy7csekT2S9O7j6ueHhEgfClQJwUpanyG1fh4j10b08gCxCJ3KiKWtfhe7g_2zpLUzZBQSjt6jq_JIhoD6hmV5GqX_s-WmuHCV60cvN52bsO_UGMN02Qo8OzEgOiiOaDWLN5q3olpXuzQ9Deb4SLjcW74Bi6I72c1iMMinOyhPXNhpLqeQCdeND77");'>
+<div class="flex w-full flex-col gap-2 p-6">
+<p class="text-base font-medium leading-normal text-slate-400">Procrastination →</p>
+<p class="text-3xl font-bold leading-tight tracking-tight text-slate-100">Rest is part of the work.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-0 left-0 right-0 flex justify-center p-6 bg-gradient-to-t from-background-dark/80 via-background-dark/50 to-transparent pointer-events-none">
+<button class="pointer-events-auto flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full h-14 bg-primary px-6 text-background-dark text-base font-bold leading-normal tracking-tight shadow-lg shadow-primary/20 transition-transform hover:scale-105 active:scale-95">
+<span class="truncate">Breathe with this</span>
+<span class="material-symbols-outlined text-background-dark !text-2xl">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

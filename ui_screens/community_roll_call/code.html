@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Study Space</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    body {
+      overflow: hidden; /* Prevent scrolling for the full-screen effect */
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 10px 2px var(--glow-color-start), 0 0 20px 5px var(--glow-color-end); }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px 5px var(--glow-color-start), 0 0 40px 10px var(--glow-color-end); }
+    }
+    .username {
+      animation: floatUp 20s linear infinite;
+    }
+    .orb {
+      animation: floatUp 30s linear infinite, pulse 5s ease-in-out infinite;
+    }
+    /* Unique animation delays and durations for a natural feel */
+    .username:nth-child(1) { animation-delay: 0s; }
+    .username:nth-child(2) { animation-delay: 4s; animation-duration: 22s; }
+    .username:nth-child(3) { animation-delay: 9s; animation-duration: 18s; }
+    .username:nth-child(4) { animation-delay: 13s; animation-duration: 25s; }
+    .username:nth-child(5) { animation-delay: 18s; animation-duration: 21s; }
+
+    .orb:nth-child(1) { animation-delay: -5s; animation-duration: 35s; --glow-color-start: #13eccb44; --glow-color-end: #13eccb11; }
+    .orb:nth-child(2) { animation-delay: 0s; animation-duration: 40s; --glow-color-start: #f0f0f033; --glow-color-end: #f0f0f011; }
+    .orb:nth-child(3) { animation-delay: -10s; animation-duration: 28s; --glow-color-start: #13eccb55; --glow-color-end: #13eccb22; }
+    .orb:nth-child(4) { animation-delay: -15s; animation-duration: 45s; --glow-color-start: #f0f0f022; --glow-color-end: #f0f0f00a; }
+    .orb:nth-child(5) { animation-delay: -20s; animation-duration: 32s; --glow-color-start: #13eccb33; --glow-color-end: #13eccb11; }
+    
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(240, 240, 240, 0.5);
+        animation: floatUp linear infinite;
+    }
+    .particle:nth-child(1) { width: 1px; height: 1px; left: 15%; animation-duration: 40s; animation-delay: -2s; }
+    .particle:nth-child(2) { width: 2px; height: 2px; left: 30%; animation-duration: 35s; animation-delay: -10s; }
+    .particle:nth-child(3) { width: 1px; height: 1px; left: 50%; animation-duration: 50s; animation-delay: -5s; }
+    .particle:nth-child(4) { width: 1px; height: 1px; left: 75%; animation-duration: 45s; animation-delay: -15s; }
+    .particle:nth-child(5) { width: 2px; height: 2px; left: 85%; animation-duration: 38s; animation-delay: -20s; }
+    .particle:nth-child(6) { width: 1px; height: 1px; left: 5%; animation-duration: 42s; animation-delay: -8s; }
+  </style>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13eccb",
+            "background-light": "#f6f8f8",
+            "background-dark": "#10221f",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex h-screen w-full flex-col bg-background-dark group/design-root overflow-hidden">
+<!-- Animated Visual Elements Layer -->
+<div class="absolute inset-0 z-0">
+<!-- Teal Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-br from-[#1d4c4f]/40 via-transparent to-background-dark"></div>
+<!-- Floating Orbs ("Companions") -->
+<div class="orb absolute h-20 w-20 rounded-full bg-primary/20" style="left: 10%; bottom: -20vh;"></div>
+<div class="orb absolute h-32 w-32 rounded-full bg-white/10" style="left: 60%; bottom: -20vh;"></div>
+<div class="orb absolute h-16 w-16 rounded-full bg-primary/30" style="left: 80%; bottom: -20vh;"></div>
+<div class="orb absolute h-24 w-24 rounded-full bg-white/5" style="left: 35%; bottom: -20vh;"></div>
+<div class="orb absolute h-28 w-28 rounded-full bg-primary/10" style="left: -5%; bottom: -20vh;"></div>
+<!-- Floating Usernames -->
+<div class="username absolute bottom-0 text-white/50 text-sm" style="left: 20%;">Alex P.</div>
+<div class="username absolute bottom-0 text-white/40 text-sm" style="left: 70%;">Mika S.</div>
+<div class="username absolute bottom-0 text-white/60 text-sm" style="left: 45%;">StudyCat</div>
+<div class="username absolute bottom-0 text-white/30 text-sm" style="left: 90%;">FocusBee</div>
+<div class="username absolute bottom-0 text-white/50 text-sm" style="left: 5%;">ZenCoder</div>
+<!-- Particle Effects -->
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+</div>
+<!-- UI Content Layer -->
+<div class="relative z-10 flex flex-1 flex-col">
+<!-- TopAppBar -->
+<div class="flex items-center bg-transparent p-4 pb-2 justify-between">
+<div class="text-white flex size-12 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Live Study</h2>
+<div class="flex size-12 shrink-0 items-center"></div>
+</div>
+<!-- Main Content Area -->
+<main class="flex flex-1 flex-col items-center justify-center px-4 pb-20">
+<!-- HeadlineText -->
+<h1 class="text-white tracking-light text-[32px] font-bold leading-tight text-center pb-3">You’re studying with 3,421 others right now.</h1>
+<!-- BodyText -->
+<p class="text-white/80 text-base font-normal leading-normal text-center">You’re part of the calm movement.</p>
+</main>
+<!-- BottomNavBar -->
+<nav class="flex gap-2 border-t border-primary/20 bg-[#10221f]/80 backdrop-blur-sm px-4 pb-3 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary/70" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">book</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Study</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary/70" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Community</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary/70" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Stats</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary/70" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Profile</p>
+</a>
+</nav>
+</div>
+</div>
+</body></html>

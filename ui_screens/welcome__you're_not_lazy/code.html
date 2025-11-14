@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StudyFlow Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#7de3d3",
+            "background-light": "#f6f8f8",
+            "background-dark": "#12201e",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background: linear-gradient(180deg, #0d1a18 0%, #12201e 100%);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col dark group/design-root overflow-hidden">
+<div class="flex flex-col justify-between flex-1 p-6">
+<div class="flex-grow flex flex-col items-center justify-center pt-16">
+<!-- HeaderImage Component - Modified for the feather visual -->
+<div class="w-48 h-64 bg-center bg-no-repeat bg-contain" data-alt="A single, delicate white feather floating gently." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChfAzAjrPSlKt42PB6Ta9dKyRLoLcgZEIM07I3cyClFiclIWZX6fe0YXwmLECurN4DPzGLDrT6cALdQOLaxYXTttvX-db9Rj383EXDgYzDP9QTO6fNHzR_GUzE2Z97HzEm1I3ImC-mFQBtOz8IRbD_6y1Ee77HLUHuAJAWm55Mlgn5MdowbD8-Bc6UpPUzCSQQezMiljJCP7ywuTtNjHSyr095PaKfXRVNIpxwiBsG0e10SVubdyMwOHYqT2YO-kH1UOQgJ67HrjFt");'></div>
+</div>
+<div class="pb-6">
+<!-- HeadlineText Component -->
+<h1 class="text-white tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">You’re not lazy. You’re just overwhelmed.</h1>
+<!-- BodyText Component -->
+<p class="text-white/80 text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">StudyFlow helps your mind feel safe again, so focus feels effortless.</p>
+</div>
+<!-- SingleButton Component -->
+<div class="flex px-4 py-3">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 flex-1 bg-primary text-background-dark gap-2 pl-5 text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Begin</span>
+<span class="material-symbols-outlined text-background-dark">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>
