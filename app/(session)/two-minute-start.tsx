@@ -14,10 +14,11 @@ export default function TwoMinuteStartScreen() {
   const addSession = useStore((state) => state.addSession);
   const setActiveSession = useStore((state) => state.setActiveSession);
   const [sessionId] = React.useState(() => `session_${Date.now()}`);
+  const [shouldNavigate, setShouldNavigate] = React.useState(false);
 
   const { formattedTime, isRunning, start, totalElapsed } = useTimer({
     initialTime: APP_CONFIG.DEFAULT_SESSION_DURATION,
-    onComplete: handleComplete,
+    onComplete: () => setShouldNavigate(true),
     autoStart: false,
   });
 
@@ -39,12 +40,15 @@ export default function TwoMinuteStartScreen() {
     setActiveSession(newSession);
   }, []);
 
-  function handleComplete() {
-    router.push({
-      pathname: '/(session)/continue-or-stop',
-      params: { sessionId },
-    });
-  }
+  useEffect(() => {
+    // Handle navigation after timer completes
+    if (shouldNavigate) {
+      router.push({
+        pathname: '/(session)/continue-or-stop',
+        params: { sessionId },
+      });
+    }
+  }, [shouldNavigate, sessionId]);
 
   const handleBegin = () => {
     start();

@@ -11,7 +11,7 @@ interface AppState {
 
   // Sessions
   sessions: Session[];
-  activeSess ion: Session | null;
+  activeSession: Session | null;
   addSession: (session: Session) => void;
   updateSession: (id: string, updates: Partial<Session>) => void;
   setActiveSession: (session: Session | null) => void;
