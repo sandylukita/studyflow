@@ -1,11 +1,18 @@
-import { CalmLevel } from './session';
+/**
+ * Calm Flow Heatmap System
+ * PRD Section 8: 4-week emotional consistency map
+ */
+
+import { Feeling } from './session';
 
 export interface HeatmapDay {
   date: string; // YYYY-MM-DD
-  calmLevel: CalmLevel | null; // null if no session
+  dominantFeeling: Feeling | null; // Most frequent feeling, null if no session
   sessionCount: number;
   totalDuration: number; // in seconds
   hasSession: boolean;
+  subjects: string[]; // All subjects studied this day
+  isToday: boolean; // Latest cell has "breathing pulse" animation
 }
 
 export interface HeatmapWeek {
@@ -14,9 +21,19 @@ export interface HeatmapWeek {
 }
 
 export interface HeatmapData {
-  weeks: HeatmapWeek[];
+  weeks: HeatmapWeek[]; // 4 weeks (PRD Section 8)
   startDate: string;
   endDate: string;
+}
+
+// Heatmap tap modal data (PRD Section 8)
+export interface HeatmapDayDetail {
+  date: string;
+  feeling: Feeling;
+  duration: number;
+  subject: string | null;
+  sessionCount: number;
+  notes?: string;
 }
 
 export interface SafetyMeterDay {

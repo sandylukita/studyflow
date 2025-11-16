@@ -26,11 +26,12 @@ export default function TwoMinuteStartScreen() {
     // Create session when component mounts
     const newSession: Session = {
       id: sessionId,
-      subject: subject || 'Unknown',
+      subject: subject || null,
       startTime: Date.now(),
       endTime: null,
       duration: 0,
-      calmLevel: 3, // Default, will be set later
+      feeling: 'Neutral', // Will be set during reflection
+      sessionType: '2min', // PRD: 2-Min Warm Start
       wasCompleted: false,
       createdAt: Date.now(),
       updatedAt: Date.now(),

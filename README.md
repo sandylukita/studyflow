@@ -1,6 +1,10 @@
 # StudyFlow - Effortless study, calm mind
 
-A React Native (Expo) app designed to help overwhelmed students find their flow through gentle, non-pressured study sessions.
+**"Your brain studies best when it feels safe, not pressured."**
+
+A calm, minimalist emotional-productivity app designed to help people study consistently without relying on motivation and without burnout. Built on neuroscience principles and behavioral psychology.
+
+**Make studying feel as natural and effortless as brushing your teeth.**
 
 ## 🚀 Getting Started
 
@@ -56,17 +60,21 @@ studyflow/
 │   │   └── config.ts         # App configuration
 │   │
 │   ├── hooks/                # Custom hooks
-│   │   └── useStore.ts       # Zustand state management
+│   │   └── useStore.ts       # Zustand state (PRD-aligned)
 │   │
-│   ├── types/                # TypeScript types
-│   │   ├── session.ts
-│   │   ├── companion.ts
-│   │   ├── user.ts
-│   │   ├── navigation.ts
-│   │   └── heatmap.ts
+│   ├── types/                # TypeScript types (PRD v1.8)
+│   │   ├── session.ts        # Session, Feeling, SessionType
+│   │   ├── companion.ts      # Companion evolution system
+│   │   ├── subject.ts        # Subject tracking
+│   │   ├── premium.ts        # Premium features config
+│   │   ├── user.ts           # User profile
+│   │   ├── navigation.ts     # Navigation types
+│   │   └── heatmap.ts        # Calm Flow Heatmap
 │   │
-│   ├── utils/                # Helper functions
-│   │   └── heatmapHelpers.ts
+│   ├── utils/                # Helper functions (PRD logic)
+│   │   ├── heatmap.ts        # Heatmap calculations
+│   │   ├── companion.ts      # Companion growth logic
+│   │   └── stats.ts          # Emotional health metrics
 │   │
 │   └── assets/               # Static assets
 │       ├── images/
@@ -78,45 +86,95 @@ studyflow/
 └── babel.config.js
 ```
 
-## ✅ Implemented Features
+## ✅ Core Features (PRD v1.8 Aligned)
 
-### ✨ Onboarding Flow (Complete)
-- 6 beautifully designed screens
-- Welcome → Truth → Promise → Bond → Proof → Success
-- Gentle introduction to the app's philosophy
+### 1️⃣ Quick Mindful Entry ✅
+- 3-second breathing bubble animation
+- "Why calm matters" messaging
+- Low-friction entry point
 
-### 🏠 Home Screen (Companion Page)
-- Growing companion visual (Seed → Sprout → Leaf → Bloom)
-- Tap for affirmations
-- Press and hold for breathing exercise (planned)
-- Progress bar showing evolution
-- Quick start button for 2-minute sessions
+### 2️⃣ Optional Subject Input 🚧
+- Biology, Writing, Work, Custom options
+- Recent subjects as quick-select chips (max 4)
+- Frequency tracking for insights
+- **Status**: Types implemented, UI pending
 
-### 📊 Progress Dashboard
-- **Safety Meter**: 7-day show-up tracking
-- **Calm Heatmap**: 4-week color-coded visualization
-- Session statistics (total sessions, minutes, streaks)
-- Interactive day details modal
+### 3️⃣ 2-Min Warm Start ✅
+- Low-pressure timer (can stop anytime)
+- "You can stop after 2 minutes" messaging
+- Session type: `2min`
 
-### ⚙️ Settings
-- Profile management (placeholder)
-- Premium upgrade
-- Notifications & theme settings (planned)
-- Community access
-- Help & support
-- Reset onboarding
+### 4️⃣ Continue or Stop Prompt 🚧
+- Three options: Stop, Focus Gently (15m), Deep Work (45m)
+- Session types: `2min` | `focus_gently` | `deep_work`
+- **Status**: Logic ready, UI pending
 
-### 🎨 Design System
-- Complete theme with colors, typography, spacing
-- Reusable components (Button, Card, Input, Modal)
-- Gradient backgrounds
-- Custom color palette for calm states
+### 5️⃣ Do Not Disturb Reminder 🚧
+- Gentle suggestion (not forceful)
+- Platform-specific DND APIs
 
-### 🧠 State Management
-- Zustand store for global state
-- Session tracking
-- Companion evolution logic
-- Statistics calculations
+### 6️⃣ Focus Timer ✅
+- Minimal design with soft visuals
+- Auto-navigation on completion (no render errors!)
+- Duration tracking
+
+### 7️⃣ Reflection Chips 🚧
+- Calm / Neutral / Tense / Distracted
+- Growth points per feeling:
+  - **Calm**: +3 points
+  - **Neutral**: +1 point
+  - **Tense**: +1 point ("you tried")
+  - **Distracted**: +0.5 points
+- **Status**: Types & logic ready, UI pending
+
+### 8️⃣ Reset Ritual 🚧
+- 10s calming end sequence
+- "You did enough" messaging
+- Prevents burnout
+
+### 9️⃣ Companion Evolution ✅ (System Ready)
+- **Stages**: Seed → Sprout → Bud → Leaf → Bloom → Spirit (premium)
+- **Growth thresholds**: [0, 10, 25, 50, 100, 200]
+- **Aura colors**: Changes based on last 3 sessions
+  - Calm: Soft teal glow (#7DE3D3)
+  - Tense: Warm orange (#EB9E55)
+  - Distracted: Lavender (#C8A2C8)
+- **Status**: Full logic implemented, visuals pending
+
+### 🔟 Calm Flow Heatmap ✅ (System Ready)
+- 4 weeks × 7 days = 28 cells
+- Color-coded by dominant feeling
+- Latest cell has breathing pulse animation
+- Tap modal shows: date, duration, subject, feeling
+- **Status**: Calculation logic complete, UI pending
+
+### 1️⃣1️⃣ Heatmap Tap Modal 🚧
+- Shows: duration, feeling, subject, notes
+- CTA: "Share Calm Moment"
+- CTA: "View All Sessions of [Subject]"
+
+### 1️⃣2️⃣ Share My Calm Card 🚧
+- Transparent Strava-style card
+- Premium frames available
+
+### 1️⃣3️⃣ Trigger Cards Library 🚧
+- Reframes for shame, comparison, pressure
+- Based on Cialdini principles
+
+### 1️⃣4️⃣ Premium Features ✅ (System Ready)
+- **Lifetime**: $9.99 one-time
+- **Monthly**: $1.99/month
+- Features:
+  - ✅ Remove ads
+  - ✅ Cloud sync (offline-first)
+  - ✅ All themes
+  - ✅ Premium companion skins
+  - ✅ Premium share card frames
+- **Status**: Feature gating complete, payment integration pending
+
+### 1️⃣5️⃣ Community Roll Call 🚧
+- Show who studied calmly today
+- Optional v2 feature
 
 ## 🚧 In Progress / Planned
 

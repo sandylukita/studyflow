@@ -1,25 +1,36 @@
+export type SessionType = '2min' | 'focus_gently' | 'deep_work';
+export type Feeling = 'Calm' | 'Neutral' | 'Tense' | 'Distracted';
+
 export interface Session {
   id: string;
-  subject: string;
+  userId?: string; // For cloud sync
+  subject: string | null;
   startTime: number; // Unix timestamp
   endTime: number | null; // null if session is ongoing
   duration: number; // in seconds
-  calmLevel: CalmLevel;
+  feeling: Feeling;
+  sessionType: SessionType;
   wasCompleted: boolean;
-  reflectionNote?: string;
+  notes?: string; // Reflection notes
   createdAt: number;
   updatedAt: number;
   syncedToCloud: boolean;
 }
 
-export type CalmLevel = 1 | 2 | 3 | 4 | 5;
+// Color mapping for feelings (aligned with PRD design system)
+export const FeelingColors: Record<Feeling, string> = {
+  Calm: '#7DE3D3', // Soft aqua
+  Neutral: '#65C1B8', // Muted teal
+  Tense: '#EB9E55', // Warm orange
+  Distracted: '#C8A2C8', // Lavender
+};
 
-export const CalmLevelLabels: Record<CalmLevel, string> = {
-  1: 'Very Stressed',
-  2: 'Stressed',
-  3: 'Moderate',
-  4: 'Calm',
-  5: 'Very Calm',
+// Growth points for companion evolution (PRD Section 9)
+export const FeelingGrowthPoints: Record<Feeling, number> = {
+  Calm: 3,
+  Neutral: 1,
+  Tense: 1, // "you tried"
+  Distracted: 0.5,
 };
 
 export interface ActiveSession {
@@ -31,17 +42,23 @@ export interface ActiveSession {
 export interface SessionStats {
   totalSessions: number;
   totalStudyTime: number; // in seconds
-  averageCalmLevel: number;
-  currentStreak: number;
-  longestStreak: number;
+
+  // Emotional health metrics (PRD differentiator)
+  calmSessionsPercentage: number; // % of sessions marked "Calm"
+  emotionalHealthScore: number; // 0-100, target 60%+ by week 4
+
+  // No streaks! Just show-ups
   showUpsLast7Days: number;
   showUpsLast30Days: number;
+
+  // Subject tracking
+  topSubjects: Array<{ subject: string; sessionCount: number; totalDuration: number }>;
 }
 
 export interface DailySessionSummary {
   date: string; // YYYY-MM-DD format
   sessions: Session[];
   totalDuration: number;
-  averageCalmLevel: number;
+  dominantFeeling: Feeling; // Most frequent feeling of the day
   subjects: string[];
 }

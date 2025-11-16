@@ -1,13 +1,28 @@
+/**
+ * StudyFlow Zustand Store
+ * PRD-aligned state management for emotional-productivity app
+ */
+
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { Session, SessionStats } from '@types/session';
 import { CompanionState } from '@types/companion';
-import { UserProfile } from '@types/user';
-import { getEvolutionStage, getProgressToNextStage } from '@constants/evolutionStages';
+import { Subject } from '@types/subject';
+import { UserPremium, PremiumFeatures, FREE_FEATURES, PREMIUM_FEATURES } from '@types/premium';
+import { HeatmapData } from '@types/heatmap';
+
+import { updateCompanionAfterSession } from '@utils/companion';
+import { calculateSessionStats } from '@utils/stats';
+import { generateHeatmapData } from '@utils/heatmap';
 
 interface AppState {
-  // User
-  user: UserProfile | null;
-  setUser: (user: UserProfile | null) => void;
+  // User & Premium
+  userId: string | null;
+  premium: UserPremium;
+  features: PremiumFeatures;
+  setPremium: (premium: boolean, purchaseType?: 'lifetime' | 'monthly') => void;
 
   // Sessions
   sessions: Session[];
@@ -15,113 +30,190 @@ interface AppState {
   addSession: (session: Session) => void;
   updateSession: (id: string, updates: Partial<Session>) => void;
   setActiveSession: (session: Session | null) => void;
+  completeSession: (sessionId: string, feeling: Session['feeling'], notes?: string) => void;
 
-  // Companion
+  // Subjects (PRD Section 7)
+  subjects: Subject[];
+  getRecentSubjects: () => Subject[];
+  addOrUpdateSubject: (subjectName: string, sessionDuration: number) => void;
+
+  // Companion (PRD Section 9)
   companion: CompanionState;
-  updateCompanion: () => void;
+  updateCompanionAfterSession: (session: Session) => void;
 
-  // Stats
+  // Heatmap (PRD Section 8)
+  getHeatmapData: () => HeatmapData;
+
+  // Stats (PRD: No streaks!)
   getStats: () => SessionStats;
+
+  // Sync
+  lastSyncedAt: number | null;
+  syncToCloud: () => Promise<void>;
 }
 
-export const useStore = create<AppState>((set, get) => ({
-  // User
-  user: null,
-  setUser: (user) => set({ user }),
-
-  // Sessions
-  sessions: [],
-  activeSession: null,
-  addSession: (session) => {
-    set((state) => ({
-      sessions: [...state.sessions, session],
-    }));
-    get().updateCompanion();
-  },
-  updateSession: (id, updates) =>
-    set((state) => ({
-      sessions: state.sessions.map((s) => (s.id === id ? { ...s, ...updates } : s)),
-    })),
-  setActiveSession: (session) => set({ activeSession: session }),
-
-  // Companion
-  companion: {
-    stage: 'seed',
-    totalSessions: 0,
-    progressToNextStage: 0,
-    sessionsUntilNextStage: 7,
-    lastInteraction: null,
-  },
-  updateCompanion: () => {
-    const { sessions } = get();
-    const totalSessions = sessions.length;
-    const progress = getProgressToNextStage(totalSessions);
-
-    set({
-      companion: {
-        stage: progress.currentStage,
-        totalSessions,
-        progressToNextStage: progress.progress,
-        sessionsUntilNextStage: progress.sessionsUntilNext,
-        lastInteraction: Date.now(),
+export const useStore = create<AppState>()(
+  persist(
+    (set, get) => ({
+      // User & Premium
+      userId: null,
+      premium: {
+        isPremium: false,
+        purchaseDate: null,
+        purchaseType: null,
+        expiryDate: null,
       },
-    });
-  },
+      features: FREE_FEATURES,
+      setPremium: (isPremium, purchaseType) =>
+        set({
+          premium: {
+            isPremium,
+            purchaseDate: isPremium ? Date.now() : null,
+            purchaseType: purchaseType || null,
+            expiryDate: purchaseType === 'lifetime' ? null : Date.now() + 30 * 24 * 60 * 60 * 1000,
+          },
+          features: isPremium ? PREMIUM_FEATURES : FREE_FEATURES,
+        }),
 
-  // Stats
-  getStats: () => {
-    const { sessions } = get();
-    const now = new Date();
-    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-    const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+      // Sessions
+      sessions: [],
+      activeSession: null,
 
-    const totalSessions = sessions.length;
-    const totalStudyTime = sessions.reduce((acc, s) => acc + s.duration, 0);
-    const averageCalmLevel =
-      sessions.reduce((acc, s) => acc + s.calmLevel, 0) / totalSessions || 0;
+      addSession: (session) =>
+        set((state) => ({
+          sessions: [...state.sessions, session],
+        })),
 
-    const showUpsLast7Days = sessions.filter(
-      (s) => new Date(s.startTime) >= sevenDaysAgo
-    ).length;
+      updateSession: (id, updates) =>
+        set((state) => ({
+          sessions: state.sessions.map((s) => (s.id === id ? { ...s, ...updates, updatedAt: Date.now() } : s)),
+        })),
 
-    const showUpsLast30Days = sessions.filter(
-      (s) => new Date(s.startTime) >= thirtyDaysAgo
-    ).length;
+      setActiveSession: (session) => set({ activeSession: session }),
 
-    // Calculate current streak
-    let currentStreak = 0;
-    const sortedSessions = [...sessions].sort((a, b) => b.startTime - a.startTime);
-    let lastDate: string | null = null;
+      completeSession: (sessionId, feeling, notes) => {
+        const state = get();
+        const session = state.sessions.find((s) => s.id === sessionId);
 
-    for (const session of sortedSessions) {
-      const sessionDate = new Date(session.startTime).toDateString();
-      if (!lastDate) {
-        lastDate = sessionDate;
-        currentStreak = 1;
-      } else {
-        const prevDate = new Date(lastDate);
-        const currDate = new Date(sessionDate);
-        const diffDays = Math.floor(
-          (prevDate.getTime() - currDate.getTime()) / (1000 * 60 * 60 * 24)
-        );
+        if (session) {
+          const completedSession: Session = {
+            ...session,
+            feeling,
+            notes,
+            wasCompleted: true,
+            endTime: Date.now(),
+            updatedAt: Date.now(),
+          };
 
-        if (diffDays === 1) {
-          currentStreak++;
-          lastDate = sessionDate;
-        } else if (diffDays > 1) {
-          break;
+          // Update session
+          get().updateSession(sessionId, {
+            feeling,
+            notes,
+            wasCompleted: true,
+            endTime: Date.now(),
+          });
+
+          // Update companion based on feeling
+          get().updateCompanionAfterSession(completedSession);
+
+          // Update subject stats
+          if (session.subject) {
+            get().addOrUpdateSubject(session.subject, session.duration);
+          }
         }
-      }
-    }
+      },
 
-    return {
-      totalSessions,
-      totalStudyTime,
-      averageCalmLevel,
-      currentStreak,
-      longestStreak: currentStreak, // TODO: Calculate properly
-      showUpsLast7Days,
-      showUpsLast30Days,
-    };
-  },
-}));
+      // Subjects (PRD Section 7)
+      subjects: [],
+
+      getRecentSubjects: () => {
+        const { subjects } = get();
+        return subjects
+          .sort((a, b) => b.lastUsed - a.lastUsed)
+          .slice(0, 4); // MAX_RECENT_SUBJECTS
+      },
+
+      addOrUpdateSubject: (subjectName, sessionDuration) =>
+        set((state) => {
+          const existing = state.subjects.find((s) => s.name === subjectName);
+
+          if (existing) {
+            return {
+              subjects: state.subjects.map((s) =>
+                s.name === subjectName
+                  ? {
+                      ...s,
+                      lastUsed: Date.now(),
+                      totalSessions: s.totalSessions + 1,
+                      totalDuration: s.totalDuration + sessionDuration,
+                    }
+                  : s
+              ),
+            };
+          }
+
+          return {
+            subjects: [
+              ...state.subjects,
+              {
+                name: subjectName,
+                lastUsed: Date.now(),
+                totalSessions: 1,
+                totalDuration: sessionDuration,
+                createdAt: Date.now(),
+              },
+            ],
+          };
+        }),
+
+      // Companion (PRD Section 9)
+      companion: {
+        stage: 'seed',
+        growthPoints: 0,
+        currentAura: 'neutral',
+        skin: 'default',
+        unlockedSkins: ['default'],
+        lastEvolution: null,
+        createdAt: Date.now(),
+      },
+
+      updateCompanionAfterSession: (session) => {
+        const { companion, sessions } = get();
+        const updatedCompanion = updateCompanionAfterSession(companion, session, sessions);
+        set({ companion: updatedCompanion });
+      },
+
+      // Heatmap (PRD Section 8)
+      getHeatmapData: () => {
+        const { sessions } = get();
+        return generateHeatmapData(sessions);
+      },
+
+      // Stats (PRD: No streaks!)
+      getStats: () => {
+        const { sessions } = get();
+        return calculateSessionStats(sessions);
+      },
+
+      // Sync
+      lastSyncedAt: null,
+      syncToCloud: async () => {
+        const { premium, sessions, companion, subjects } = get();
+
+        if (!premium.isPremium) {
+          console.log('Cloud sync is a premium feature');
+          return;
+        }
+
+        // TODO: Implement Firebase sync
+        console.log('Syncing to cloud...', { sessions, companion, subjects });
+
+        set({ lastSyncedAt: Date.now() });
+      },
+    }),
+    {
+      name: 'studyflow-storage',
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
