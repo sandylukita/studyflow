@@ -9,6 +9,7 @@ import { Theme } from '@constants/theme';
 import { useStore } from '@hooks/useStore';
 import { getRandomAffirmation } from '@constants/affirmations';
 import { EVOLUTION_STAGES } from '@constants/evolutionStages';
+import { getProgressToNextStage } from '@utils/companion';
 
 export default function HomeScreen() {
   const companion = useStore((state) => state.companion);
@@ -16,6 +17,7 @@ export default function HomeScreen() {
 
   const currentStageInfo = EVOLUTION_STAGES[companion.stage];
   const nextStageName = currentStageInfo.nextStageName?.replace(' Stage', '') || null;
+  const progressToNextStage = getProgressToNextStage(companion);
 
   const handleTap = () => {
     const newAffirmation = getRandomAffirmation();
@@ -64,7 +66,7 @@ export default function HomeScreen() {
               <ProgressBar
                 currentStage={currentStageInfo.name}
                 nextStage={nextStageName}
-                progress={companion.progressToNextStage}
+                progress={progressToNextStage}
               />
             </View>
           </View>

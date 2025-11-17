@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withRepeat,
+  withSequence,
+  withTiming,
+  Easing,
+} from 'react-native-reanimated';
 import { Theme } from '@constants/theme';
 import { EvolutionStage } from '@constants/evolutionStages';
 import { Ionicons } from '@expo/vector-icons';
@@ -18,6 +26,32 @@ export const CompanionVisual: React.FC<CompanionVisualProps> = ({
   onLongPress,
   size = 160,
 }) => {
+  // Breathing animation - gentle pulse
+  const breathScale = useSharedValue(1);
+  const glowOpacity = useSharedValue(1);
+
+  useEffect(() => {
+    // Gentle breathing effect (3 seconds per breath cycle)
+    breathScale.value = withRepeat(
+      withSequence(
+        withTiming(1.05, { duration: 1500, easing: Easing.inOut(Easing.ease) }),
+        withTiming(1, { duration: 1500, easing: Easing.inOut(Easing.ease) })
+      ),
+      -1, // Infinite repeat
+      false
+    );
+
+    // Subtle glow pulsing
+    glowOpacity.value = withRepeat(
+      withSequence(
+        withTiming(0.6, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
+        withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.ease) })
+      ),
+      -1,
+      false
+    );
+  }, []);
+
   const handleTap = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     onTap?.();
@@ -61,6 +95,20 @@ export const CompanionVisual: React.FC<CompanionVisualProps> = ({
   const glowSize = size * 1.25;
   const iconSize = size * 0.4;
 
+  // Animated styles for breathing effect
+  const animatedCompanionStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: breathScale.value }],
+  }));
+
+  const animatedGlowStyle = useAnimatedStyle(() => ({
+    opacity: glowOpacity.value * getGlowIntensity(),
+  }));
+
+  const animatedOuterGlowStyle = useAnimatedStyle(() => ({
+    opacity: glowOpacity.value * getGlowIntensity() * 0.5,
+    transform: [{ scale: breathScale.value * 1.02 }],
+  }));
+
   return (
     <TouchableOpacity
       style={[styles.container, { width: size, height: size }]}
@@ -69,36 +117,42 @@ export const CompanionVisual: React.FC<CompanionVisualProps> = ({
       delayLongPress={500}
       activeOpacity={0.8}
     >
-      {/* Outer Glow */}
-      <View
+      {/* Outer Glow - Animated */}
+      <Animated.View
         style={[
           styles.glowOuter,
+          animatedOuterGlowStyle,
           {
             width: glowSize,
             height: glowSize,
             borderRadius: glowSize / 2,
-            opacity: getGlowIntensity() * 0.5,
           },
         ]}
       />
 
-      {/* Inner Glow */}
-      <View
+      {/* Inner Glow - Animated */}
+      <Animated.View
         style={[
           styles.glowInner,
+          animatedGlowStyle,
           {
             width: size * 1.1,
             height: size * 1.1,
             borderRadius: (size * 1.1) / 2,
-            opacity: getGlowIntensity(),
           },
         ]}
       />
 
-      {/* Companion Circle */}
-      <View style={[styles.companionCircle, { width: size, height: size, borderRadius: size / 2 }]}>
+      {/* Companion Circle - Animated */}
+      <Animated.View
+        style={[
+          styles.companionCircle,
+          animatedCompanionStyle,
+          { width: size, height: size, borderRadius: size / 2 },
+        ]}
+      >
         <Ionicons name={getIcon()} size={iconSize} color={Theme.colors.primary} />
-      </View>
+      </Animated.View>
     </TouchableOpacity>
   );
 };
