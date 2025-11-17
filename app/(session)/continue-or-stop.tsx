@@ -8,10 +8,19 @@ import { Theme } from '@constants/theme';
 export default function ContinueOrStopScreen() {
   const { sessionId } = useLocalSearchParams<{ sessionId: string }>();
 
-  const handleContinue = () => {
+  const handleFocusGently = () => {
+    // PRD: Focus Gently = 15 minutes
     router.push({
-      pathname: '/(session)/two-minute-start',
-      params: { sessionId },
+      pathname: '/(session)/active-session',
+      params: { sessionId, duration: '900', sessionType: 'focus_gently' }, // 15 min = 900 seconds
+    });
+  };
+
+  const handleDeepWork = () => {
+    // PRD: Deep Work = 45 minutes
+    router.push({
+      pathname: '/(session)/active-session',
+      params: { sessionId, duration: '2700', sessionType: 'deep_work' }, // 45 min = 2700 seconds
     });
   };
 
@@ -39,21 +48,27 @@ export default function ContinueOrStopScreen() {
               You did it! 2 minutes complete.
             </Text>
             <Text style={styles.subheadline}>
-              Want to keep going, or wrap it up?
+              How do you want to continue?
             </Text>
           </View>
         </View>
 
-        {/* Action Buttons */}
+        {/* Action Buttons - PRD Feature #4 */}
         <View style={styles.footer}>
           <Button
-            title="Keep Going"
-            onPress={handleContinue}
+            title="Focus Gently (15 min)"
+            onPress={handleFocusGently}
             variant="primary"
             style={styles.button}
           />
           <Button
-            title="I'm Done"
+            title="Deep Work (45 min)"
+            onPress={handleDeepWork}
+            variant="primary"
+            style={styles.button}
+          />
+          <Button
+            title="Stop & Reflect"
             onPress={handleStop}
             variant="secondary"
             style={styles.button}
